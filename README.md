@@ -15,6 +15,15 @@ That data is then displayed in the table.
 
 The table supports pagination and searching, sorting.
 
+File Structure:
+
+1. index.html - main entry script - programed
+2. js/app.js - main js script for the program - programed
+3. js/jQuery.datatables.js - js script for datatables - from library
+4. js/datatables.bootstrap.js - js script for datatables with bootstrap
+5. css/datatables/datatables.bootstrap.css - stylesheet for datatables
+6. css/datatables/images - images to be used in datatables.
+
 Workflow:
 
 1. User enters a url in the url input.
