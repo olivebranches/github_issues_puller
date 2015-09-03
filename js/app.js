@@ -42,17 +42,21 @@ function getData(value)
 	//check for validity of url
 	var type = url.slice(0,8);
 	var remaining_url = url.slice(8);
-	
 
-	var url_array = remaining_url.split("/");
-
+	var type1 = url.slice(0,7);
+	var remaining_url1 = url.slice(7);
+	var url_array;
+	if(type1=="http://")
+		 url_array = remaining_url1.split("/");
+	else if(type=="https://")
+		 url_array = remaining_url.split("/");
 	//repository name
 	var repo_url = url_array[1]+'/'+url_array[2];
 	
-	if(url==null||url==undefined||url==0||type+url_array[0] != "https://github.com")
+	if(url==null||url==undefined||url==0||(type+url_array[0] != "https://github.com"&& type1+url_array[0]!="http://github.com"))
 	{
-
-		alert("Please Enter a valid github repository url!!");
+		
+			alert("Please Enter a valid github repository url!!");
 	}
 
 	else 
