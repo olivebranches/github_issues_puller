@@ -24,6 +24,9 @@ File Structure:
 5. css/datatables/datatables.bootstrap.css - stylesheet for datatables
 6. css/datatables/images - images to be used in datatables.
 
+Note: The Heroku app uses index.php as the entry script - which containes the same code as index.html only with index.php name and php tags. 
+
+
 Workflow:
 
 1. User enters a url in the url input.
