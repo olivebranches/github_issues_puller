@@ -1,0 +1,114 @@
+<html>
+<!DOCTYPE html>
+<head>
+
+<!--jquery cdn-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--bootstrap css cdn-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--local css-->
+<link rel = "stylesheet" href="css/datatables/dataTables.bootstrap.css">
+<!--bootstrap js cdn-->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+<!--main js file-->
+<script src="js/app.js"></script>
+
+<!--datatables js file-->
+<script src = "js/jquery.dataTables.js"></script>
+<!--datatables bootstrap js file-->
+<script src = "js/dataTables.bootstrap.js"></script>
+
+<meta charset="utf-8"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>
+		Shippable Github Issues
+	</title>
+</head>
+
+<body>
+
+	<div id="issues" class = "row">
+		<center>
+	    <h1>Github Issues </h1>
+	    <p>Enter a Github repository url</p>
+	    
+	  		<!--url input box-->
+	    	<input class = "form-control" type="text" name="url" id="url" placeholder="Github Repository Url..." onChange = "resetDivs()">
+	    
+	    
+	    <br/>
+	    <!--selection dropdown-->
+	    <select class = "btn btn-primary" id="button" onChange = "getData($(this).val());">
+	    	<option value = "0">Select</option>
+	  
+	    	<option value = "2">Open Issues in last 24 hours</option>
+	    	<option value = "3">Open Issues in last 7 days</option>
+
+	    	<option value = "4">Open Issues more than 7 days ago</option>
+	    	<option value = "1">All Open Issues</option>
+
+	    </select>
+
+	    <!--div to show total no. of issues-->
+	    <p><b>Total Issues</b></p>
+	    <div id="noofissues">
+	    </div>
+	    <br/>
+	    <!--div to show section no. of issues-->
+	    <p id = "section" style ="display:none;"><b>Issues is this section</b></p>
+	    <div id = "issues-x2" style ="display:none;">
+	    	 
+	    </div>
+	    <div id = "issues-x3" style ="display:none;">
+	    	 
+	    </div>
+	    <div id = "issues-x4" style ="display:none;">
+	    	 
+	    </div>
+	    <center>
+	</div>
+	<!--div for hidden-div and tables-->
+	<div class = "row">
+	  	<div class = "col-lg-2 col-xs-2">
+	  	</div>
+	  	<div id = "hidden-div" style = "display:none;">
+	  	</div>
+	  	<div id = "hidden-div1" style = "display:none;">
+	  	</div>
+	  	<div id = "hidden-div2" style = "display:none;">
+	  	</div>
+	  	<div id = "hidden-div3" style = "display:none;">
+	  	</div>
+	  	<div class = "col-lg-8 col-xs-8" >
+	  		<div id="table_data1" class="table-responsive"  style = "display:none;">
+		  		
+		    </div>
+		    <div id="table_data2" class="table-responsive"  style = "display:none;">
+		        
+		    </div>
+		    <div id="table_data3" class="table-responsive" style = "display:none;">
+		        
+		    </div>
+		    <div id="table_data4" class="table-responsive" style = "display:none;">
+		        
+	    	</div>
+	    </div>
+	    <div class = "col-lg-2 col-xs-2">
+	  	</div>
+		
+	    
+	 </div>
+ </body>
+
+ <style>
+ #url
+ {
+ 	width: 50%;
+ }
+ </style>
+
+
+</html>
