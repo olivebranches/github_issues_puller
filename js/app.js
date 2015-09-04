@@ -106,22 +106,37 @@ function getData(value)
 								n2 = s2.length;
 								s3 = "=";
 
-								if(array[i].indexOf(s2)== -1)
-								{
-									if(array[i].indexOf(s1)!= -1)
-									{
-										pages[k] = array[i][array[i].indexOf(s1)+n1+s3.length];
+								
+										//pages[k] = array[i][array[i].indexOf(s1)+n1+s3.length];
+										var a = array[i].split(";");
+										a[0] = a[0].slice(1,-1);
+										console.log("a0"+a[0]);
+
+										console.log(array[i]);
+										var b = a[0].split("?");
+										console.log(b[1]);
+										var index = 0;
+										for(j=0;j<b.length;j++)
+										{
+											if(b[j].indexOf('page')!=-1)
+											{
+												index = j;
+												
+											}
+										}
+										console.log(b[index]);
+
+										var page_number = b[index].split("=");
+
+
+										pages[k] = parseInt(page_number[1]);
 										k++;
 
-									}
-								}
-								else
-								{
-									pages[k] = array[i][array[i].indexOf(s2)+n2+s3.length];
-									k++;
-
-								}
+								
+								
 							}
+
+							console.log(pages);
 
 
 						// fetch data from next to last pages
@@ -346,17 +361,9 @@ function createTable(data, length, url)
 	{
 		// if data state is open 
 		// fill hidden-div for all issues
-		if(data[i]['state'] == 'open')
-        {
-        	concat += '<tr>';
-        	concat +='<td><a href = "http://github.com/'+url+'/issues/'+data[i]['number']+'">'+data[i]['number']+'</a></td>';
-        	concat += '<td>'+data[i]['state']+'</td>';
-        	concat +='<td>'+data[i]['title']+'</td>';
-        	concat +='<td>'+data[i]['created_at']+'</td>';
-        	concat +='</tr>';
-        	issues++;
 
-        	// get date and time 24 hours back
+
+		// get date and time 24 hours back
         	// adjusted according with GMT 
         	var yesterday = new Date(new Date().getTime() - (24 * 60 * 60 * 1000)+(5*60*60*1000)+(30*60*1000));
 
@@ -370,10 +377,22 @@ function createTable(data, length, url)
 
         	var iso7 = week.toISOString();
         	iso7 = iso7.slice(0,-5)+'Z';
-        	
-        	// if data state is open and was created less than 24 hours ago
+
+        	if(data[i]['state'] == 'open')
+        	{
+	        	concat += '<tr>';
+	        	concat +='<td><a href = "http://github.com/'+url+'/issues/'+data[i]['number']+'">'+data[i]['number']+'</a></td>';
+	        	concat += '<td>'+data[i]['state']+'</td>';
+	        	concat +='<td>'+data[i]['title']+'</td>';
+	        	concat +='<td>'+data[i]['created_at']+'</td>';
+	        	concat +='</tr>';
+	        	issues++;
+
+		
+
+        // if data state is open and was created less than 24 hours ago
         	// fill hidden-div1 with issues created less than 24 hours ago
-        	if(data[i]['created_at'] >= iso24)
+        	if(data[i]['state'] == 'open' && data[i]['created_at'] >= iso24)
         	{
 
         		concat1 += '<tr>';
@@ -387,7 +406,9 @@ function createTable(data, length, url)
 
         	// if data state is open and was created more than 24 hours ago
         	// but less than 7 days ago fill hidden-div2 with those issues
-        	else if(data[i]['created_at'] < iso24 && data[i]['created_at'] >= iso7)
+        	
+
+        else if(data[i]['state'] == 'open' && data[i]['created_at'] < iso24 && data[i]['created_at'] >= iso7)
         	{
 
         		concat2 += '<tr>';
@@ -399,9 +420,9 @@ function createTable(data, length, url)
         		issues2++;
         	}
 
-        	// if data state is open and was created more than 7 days ago
+        // if data state is open and was created more than 7 days ago
         	// fill hidden-div3 with those issues
-        	else if(data[i]['created_at'] < iso7)
+        	else if( data[i]['state'] == 'open' && data[i]['created_at'] < iso7)
         	{
 
         		concat3 += '<tr>';
@@ -412,8 +433,9 @@ function createTable(data, length, url)
         		concat3 +='</tr>';
         		issues3++;
         	}
-
         }
+
+        	
     }
     //get existing values of number of issues
     // parse integer from the values and add new issues 
