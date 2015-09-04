@@ -110,11 +110,9 @@ function getData(value)
 										//pages[k] = array[i][array[i].indexOf(s1)+n1+s3.length];
 										var a = array[i].split(";");
 										a[0] = a[0].slice(1,-1);
-										console.log("a0"+a[0]);
-
-										console.log(array[i]);
+										
 										var b = a[0].split("?");
-										console.log(b[1]);
+										
 										var index = 0;
 										for(j=0;j<b.length;j++)
 										{
@@ -124,7 +122,7 @@ function getData(value)
 												
 											}
 										}
-										console.log(b[index]);
+										
 
 										var page_number = b[index].split("=");
 
@@ -136,7 +134,7 @@ function getData(value)
 								
 							}
 
-							console.log(pages);
+							
 
 
 						// fetch data from next to last pages
