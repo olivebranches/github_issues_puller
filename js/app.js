@@ -75,7 +75,7 @@ function getData(value)
 			
 			//ajax call for api url
 			var xhr = $.ajax({
-			url: 'http://api.github.com/repos/'+repo_url+'/issues',
+			url: 'https://api.github.com/repos/'+repo_url+'/issues',
 			type: 'GET',
 			async: true,
 				success : function(data)
@@ -328,7 +328,7 @@ function fetchAllPages(pages, url)
 	for(i = pages[0]; i<=pages[pages.length-1];i++)
 	{
 		$.ajax({
-			url: 'http://api.github.com/repos/'+url+'/issues?page='+i,
+			url: 'https://api.github.com/repos/'+url+'/issues?page='+i,
 			type: 'GET',
 			async: true,
 			success : function(data1)
@@ -376,7 +376,7 @@ function createTable(data, length, url)
         	var iso7 = week.toISOString();
         	iso7 = iso7.slice(0,-5)+'Z';
 
-        	if(data[i]['state'] == 'open')
+        	if(data[i]['state'] == 'open' && data[i]['pull_request'] == null)
         	{
 	        	concat += '<tr>';
 	        	concat +='<td><a href = "http://github.com/'+url+'/issues/'+data[i]['number']+'">'+data[i]['number']+'</a></td>';
@@ -390,7 +390,7 @@ function createTable(data, length, url)
 
         // if data state is open and was created less than 24 hours ago
         	// fill hidden-div1 with issues created less than 24 hours ago
-        	if(data[i]['state'] == 'open' && data[i]['created_at'] >= iso24)
+        	if(data[i]['created_at'] >= iso24)
         	{
 
         		concat1 += '<tr>';
@@ -406,7 +406,7 @@ function createTable(data, length, url)
         	// but less than 7 days ago fill hidden-div2 with those issues
         	
 
-        else if(data[i]['state'] == 'open' && data[i]['created_at'] < iso24 && data[i]['created_at'] >= iso7)
+        else if(data[i]['created_at'] < iso24 && data[i]['created_at'] >= iso7)
         	{
 
         		concat2 += '<tr>';
@@ -420,7 +420,7 @@ function createTable(data, length, url)
 
         // if data state is open and was created more than 7 days ago
         	// fill hidden-div3 with those issues
-        	else if( data[i]['state'] == 'open' && data[i]['created_at'] < iso7)
+        	else if(data[i]['created_at'] < iso7)
         	{
 
         		concat3 += '<tr>';
