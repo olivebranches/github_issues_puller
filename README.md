@@ -7,7 +7,7 @@ Technologies Used
   5. github API
   6. AJAX
 
-The solution is coded using Javascript and jquery ajax for github api call.
+This is using Javascript and jquery ajax for github api call.
 
 The api call returns data in json format. 
 
@@ -38,7 +38,7 @@ Workflow:
 4. Program then checks if this is first time this data is fetched. Data fetched is stored in hidden-div in html format.
 
 5. If this is first time (hidden-divs are empty) - makes an ajax call to 
-  http://api.github.com/repos/<github repo name>/issues
+  http://api.github.com/repos/github repo name/issues
   
 6. After making first ajax call - it checks from ajax "link" response header - if there are other pages with data.
 
